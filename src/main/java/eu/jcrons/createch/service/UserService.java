@@ -14,7 +14,7 @@ import eu.jcrons.createch.model.User;
 public class UserService implements IUserService {
 
 	// UserDAO is injected
-	IUserDAO userDAO;
+	private IUserDAO userDAO;
 	
 	/**
 	 * Get User DAO

@@ -13,7 +13,7 @@
             <h:outputText value="USERs : "></h:outputText>
             <p:dataTable id="users" var="user" value="#{userMB.userList}">
                 
-                <!-- User ID -->
+                User ID
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="ID" />
@@ -21,7 +21,7 @@
                     <h:outputText value="#{user.id}" />
                 </p:column>
                 
-                <!-- First Name -->
+                First Name
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="First Name" />
@@ -29,7 +29,7 @@
                     <h:outputText value="#{user.firstName}" />
                 </p:column>
                 
-                <!-- Last Name -->
+                Last Name
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Last Name" />

@@ -83,7 +83,7 @@ public class UserDAO implements IUserDAO {
 	 * @return List - User List
 	 */
 	public List<User> getUsers() {
-		List list = getSessionFactory().getCurrentSession()
+		List<User> list = getSessionFactory().getCurrentSession()
 				.createQuery("from users").list();
 		return list;
 	}
