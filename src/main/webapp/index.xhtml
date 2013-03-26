@@ -1,0 +1,44 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Sample Application</title>
+    </h:head>
+
+    <h:body>
+        <h:form>
+            <h:outputText value="USERs : "></h:outputText>
+            <p:dataTable id="users" var="user" value="#{userMB.userList}">
+                
+                <!-- User ID -->
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ID" />
+                    </f:facet>
+                    <h:outputText value="#{user.id}" />
+                </p:column>
+                
+                <!-- First Name -->
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="First Name" />
+                    </f:facet>
+                    <h:outputText value="#{user.firstName}" />
+                </p:column>
+                
+                <!-- Last Name -->
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Last Name" />
+                    </f:facet>
+                    <h:outputText value="#{user.lastName}" />
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>
+    </h:body>
+    
+</html>
