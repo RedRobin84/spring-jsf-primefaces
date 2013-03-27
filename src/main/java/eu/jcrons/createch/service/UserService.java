@@ -9,13 +9,13 @@ import eu.jcrons.createch.model.User;
  * User Service
  * 
  * @author Tomas Jakubco
- *
+ * 
  */
 public class UserService implements IUserService {
 
 	// UserDAO is injected
 	private IUserDAO userDAO;
-	
+
 	/**
 	 * Get User DAO
 	 * 
@@ -24,11 +24,12 @@ public class UserService implements IUserService {
 	public IUserDAO getUserDAO() {
 		return userDAO;
 	}
-	
+
 	/**
 	 * Set User Dao
 	 * 
-	 * @param IUserDAO - User DAO
+	 * @param IUserDAO
+	 *            - User DAO
 	 */
 	public void setUserDAO(IUserDAO userDAO) {
 		this.userDAO = userDAO;
@@ -37,7 +38,8 @@ public class UserService implements IUserService {
 	/**
 	 * Add New User
 	 * 
-	 * @param User - User
+	 * @param User
+	 *            - User
 	 */
 	public void addUser(User user) {
 		getUserDAO().addUser(user);
@@ -46,7 +48,8 @@ public class UserService implements IUserService {
 	/**
 	 * Update User
 	 * 
-	 * @param User - User
+	 * @param User
+	 *            - User
 	 */
 	public void updateUser(User user) {
 		getUserDAO().updateUser(user);
@@ -55,7 +58,8 @@ public class UserService implements IUserService {
 	/**
 	 * Delete User
 	 * 
-	 * @param User - User
+	 * @param User
+	 *            - User
 	 */
 	public void deleteUser(User user) {
 		getUserDAO().deleteUser(user);
@@ -79,5 +83,5 @@ public class UserService implements IUserService {
 	public List<User> getUsers() {
 		return getUserDAO().getUsers();
 	}
-	
+
 }

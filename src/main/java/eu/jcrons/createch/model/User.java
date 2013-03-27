@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users")
 public class User {
 
 	private int id;
@@ -46,7 +46,8 @@ public class User {
 	/**
 	 * Set First Name
 	 * 
-	 * @param String - First Name
+	 * @param String
+	 *            - First Name
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -65,7 +66,8 @@ public class User {
 	/**
 	 * Set Last Name
 	 * 
-	 * @param String - Last Name
+	 * @param String
+	 *            - Last Name
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;

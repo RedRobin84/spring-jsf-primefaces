@@ -10,7 +10,7 @@ import eu.jcrons.createch.model.User;
 @ManagedBean
 @SessionScoped
 public class Hello {
-	
+
 	List<User> userList;
 
 	private String world = "Hello World!";

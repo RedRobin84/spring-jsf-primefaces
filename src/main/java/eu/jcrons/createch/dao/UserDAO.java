@@ -3,6 +3,7 @@ package eu.jcrons.createch.dao;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import eu.jcrons.createch.model.User;
 
@@ -12,6 +13,7 @@ import eu.jcrons.createch.model.User;
  * @author Tomas Jakubco
  * 
  */
+@Transactional
 public class UserDAO implements IUserDAO {
 
 	private SessionFactory sessionFactory;
@@ -71,8 +73,9 @@ public class UserDAO implements IUserDAO {
 	 * @param int - User ID return User - User
 	 */
 	public User getUserByID(int id) {
-		List list = getSessionFactory().getCurrentSession()
-				.createQuery("from users where id = ?").setParameter(0, id)
+		@SuppressWarnings("unchecked")
+		List<User> list = getSessionFactory().getCurrentSession()
+				.createQuery("from User where id = ?").setParameter(0, id)
 				.list();
 		return (User) list.get(0);
 	}
@@ -83,8 +86,9 @@ public class UserDAO implements IUserDAO {
 	 * @return List - User List
 	 */
 	public List<User> getUsers() {
+		@SuppressWarnings("unchecked")
 		List<User> list = getSessionFactory().getCurrentSession()
-				.createQuery("from users").list();
+				.createQuery("from User").list();
 		return list;
 	}
 
