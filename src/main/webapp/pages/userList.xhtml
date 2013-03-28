@@ -1,0 +1,39 @@
+<ui:composition lang="en" xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui">
+
+  <h:form>
+  
+    <p:contextMenu for="users">
+      <p:menuitem value="Delete" update="users"
+        actionListener="#{userMB.deleteUser}" />
+    </p:contextMenu>
+
+    <h:outputText value="USERs : " />
+
+    <p:dataTable id="users" var="user" value="#{userMB.userList}"
+      rowKey="#{user.id}" selectionMode="single"
+      selection="#{userMB.selectedUser}">
+      
+      <p:ajax event="rowSelect" listener="#{userMB.onRowSelect}" render="@form" />
+                  
+                  User ID
+                  <p:column headerText="Id">
+                      #{user.id}
+                  </p:column>
+                  
+                First Name
+                  <p:column headerText="First Name">
+                      #{user.firstName}
+                  </p:column>
+                  
+                  Last Name
+                  <p:column headerText="Last Name">
+                      #{user.lastName}
+                  </p:column>
+
+    </p:dataTable>
+  </h:form>
+</ui:composition>
