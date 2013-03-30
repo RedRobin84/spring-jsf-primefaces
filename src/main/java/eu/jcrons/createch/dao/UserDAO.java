@@ -2,6 +2,7 @@ package eu.jcrons.createch.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,7 +55,10 @@ public class UserDAO implements IUserDAO {
 	 *            - User
 	 */
 	public void updateUser(User user) {
-		getSessionFactory().getCurrentSession().update(user);
+	    User u = getUserByID(user.getId());
+	    u.setFirstName(user.getFirstName());
+	    u.setLastName(user.getLastName());
+	    getSessionFactory().getCurrentSession().saveOrUpdate(u);
 	}
 
 	/**

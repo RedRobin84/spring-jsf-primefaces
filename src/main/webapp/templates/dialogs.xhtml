@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+    <!-- Add New User Dialog -->
+    <h:form id="frmNewUser">
+        <p:dialog header="Add New User" widgetVar="dlgNewUser" id="dlgNewUser" resizable="false" modal="true">
+            <h:panelGrid id="pgNewUser" columns="2" cellpadding="4" style="margin: 0 auto;">
+
+                <h:outputText value="First Name :" />
+                <h:outputText value="Last Name :" />
+
+                <p:inputText required="true" value="#{userMB.user.firstName}" />
+                <p:inputText required="true" value="#{userMB.user.lastName}" />
+                
+            </h:panelGrid>
+            
+            <p:separator />
+            
+            <p:commandButton id="addUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgNewUser','frmNewUser');" actionListener="#{userMB.addUser}" update=":frmUserList:usersTable" />
+            <p:commandButton type="reset" value="Reset" />
+            
+        </p:dialog>
+    </h:form>
+
+    <!-- View User Details Dialog -->
+    <h:form id="frmUserDetail">
+        <p:dialog header="User Detail" widgetVar="dlgUserDetail" id="dlgUserDetail" resizable="false" modal="true">
+            <p:panelGrid id="pgUserDetail" columns="2" cellpading="4" style="margin: 0 auto;">
+            
+                <h:outputText value="ID: " />
+                <h:outputText value="#{userMB.selectedUser.id}" />
+
+                <h:outputText value="First Name: " />
+                <h:outputText value="#{userMB.selectedUser.firstName}" />
+
+                <h:outputText value="Last Name: " />
+                <h:outputText value="#{userMB.selectedUser.lastName}" />
+            
+                <f:facet name="footer">
+                    
+                    <p:commandButton value="OK" oncomplete="dlgUserDetail.hide();" />
+                
+                </f:facet>
+                
+            </p:panelGrid>
+            
+        </p:dialog>
+    </h:form>
+    
+    <!-- Edit User Dialog -->
+    <h:form id="frmEditUser">
+        <p:dialog header="Edit User" widgetVar="dlgEditUser" id="dlgEditUser" resizable="false" modal="true">
+            <h:panelGrid id="pgEditUser" columns="2" cellpadding="4" style="margin: 0 auto;">
+
+                <h:outputText value="First Name :" />
+                <h:outputText value="Last Name :" />
+
+                <p:inputText value="#{userMB.selectedUser.firstName}"  />
+                <p:inputText value="#{userMB.selectedUser.lastName}" />
+                
+            </h:panelGrid>
+            
+            <p:separator />
+            
+            <p:commandButton id="editUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgEditUser','frmEditUser');" actionListener="#{userMB.updateUser}" update=":frmUserList:usersTable" />
+            <p:commandButton id="cancelBtn" value="Cancel" oncomplete="dlgEditUser.hide();" />
+            
+        </p:dialog>
+    </h:form>
+    
+</h:body>
+
+</html>

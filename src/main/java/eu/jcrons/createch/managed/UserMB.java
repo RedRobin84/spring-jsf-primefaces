@@ -8,7 +8,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
+import org.primefaces.event.SelectEvent;
 import org.springframework.dao.DataAccessException;
+import org.springframework.transaction.annotation.Transactional;
 
 import eu.jcrons.createch.model.User;
 import eu.jcrons.createch.service.IUserService;
@@ -33,50 +35,13 @@ public class UserMB implements Serializable {
 	IUserService userService;
 
 	List<User> userList;
-
+	
 	private int id;
 	private String firstName;
 	private String lastName;
-
-	/**
-	 * Add New User
-	 * 
-	 * @return String - Response Message
-	 */
-	public String addUser() {
-		try {
-			User user = new User();
-			user.setId(getId());
-			user.setFirstName(getFirstName());
-			user.setLastName(getLastName());
-			getUserService().addUser(user);
-			return SUCCESS;
-		} catch (DataAccessException e) {
-			e.printStackTrace();
-		}
-		return ERROR;
-	}
-
-	/**
-	 * Reset Fields
-	 */
-	public void reset() {
-		this.setId(0);
-		this.setFirstName("");
-		this.setLastName("");
-	}
-
-	/**
-	 * Get User List
-	 * 
-	 * @return List - User List
-	 */
-	public List<User> getUserList() {
-		userList = new ArrayList<User>();
-		userList.addAll(getUserService().getUsers());
-		return userList;
-	}
-
+	private User selectedUser = new User();
+	private User user = new User();
+	
 	/**
 	 * Get User Service
 	 * 
@@ -94,6 +59,17 @@ public class UserMB implements Serializable {
 	 */
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
+	}
+
+	/**
+	 * Get User List
+	 * 
+	 * @return List - User List
+	 */
+	public List<User> getUserList() {
+		userList = new ArrayList<User>();
+		userList.addAll(getUserService().getUsers());
+		return userList;
 	}
 
 	/**
@@ -160,6 +136,82 @@ public class UserMB implements Serializable {
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	/**
+	 * Get Selected User
+	 * 
+	 * @return User - Selected User
+	 */
+	public User getSelectedUser() {
+		return selectedUser;
+	}
+
+	/**
+	 * Set Selected User
+	 * 
+	 * @param User - Selected User
+	 */
+	public void setSelectedUser(User selectedUser) {
+		this.selectedUser = selectedUser;
+	}
+
+	public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    /**
+	 * Add New User
+	 * 
+	 * @return String - Response Message
+	 */
+	public String addUser() {
+		try {
+			User usr = user;
+			getUserService().addUser(usr);
+			user = new User();
+			return SUCCESS;
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+		return ERROR;
+	}
+	
+	public String updateUser() {
+        try {
+            getUserService().updateUser(selectedUser);
+            return SUCCESS;
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+	
+	public String deleteUser() {
+        try {
+            getUserService().deleteUser(selectedUser);
+            return SUCCESS;
+        } catch (DataAccessException e) {
+            e.printStackTrace();
+        }
+        return ERROR;
+    }
+
+	/**
+	 * Reset Fields
+	 */
+	public void reset() {
+		this.setId(0);
+		this.setFirstName("");
+		this.setLastName("");
+	}
+	
+	public void onRowSelect(SelectEvent event) {
+	    System.out.println(selectedUser.getFirstName());
 	}
 
 }
