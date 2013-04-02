@@ -6,11 +6,10 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.primefaces.event.SelectEvent;
 import org.springframework.dao.DataAccessException;
-import org.springframework.transaction.annotation.Transactional;
 
 import eu.jcrons.createch.model.User;
 import eu.jcrons.createch.service.IUserService;
@@ -22,7 +21,7 @@ import eu.jcrons.createch.service.IUserService;
  * 
  */
 @ManagedBean(name = "userMB")
-@RequestScoped
+@SessionScoped
 public class UserMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;
