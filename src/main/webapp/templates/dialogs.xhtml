@@ -23,7 +23,7 @@
             <p:separator />
             
             <p:commandButton id="addUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgNewUser','frmNewUser');" actionListener="#{userMB.addUser}" update=":frmUserList:usersTable" />
-            <p:commandButton type="reset" value="Reset" />
+            <p:commandButton id="cancelBtn" value="Cancel" oncomplete="dlgNewUser.hide();" />
             
         </p:dialog>
     </h:form>
