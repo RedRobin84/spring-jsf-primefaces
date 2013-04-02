@@ -35,6 +35,8 @@ public class UserMB implements Serializable {
 
 	List<User> userList;
 	
+	private List<User> filteredUsers;
+	
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -79,6 +81,14 @@ public class UserMB implements Serializable {
 	 */
 	public void setUserList(List<User> userList) {
 		this.userList = userList;
+	}
+
+	public List<User> getFilteredUsers() {
+		return filteredUsers;
+	}
+
+	public void setFilteredUsers(List<User> filteredUsers) {
+		this.filteredUsers = filteredUsers;
 	}
 
 	/**

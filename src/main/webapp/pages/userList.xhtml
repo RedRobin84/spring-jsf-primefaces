@@ -1,60 +1,72 @@
 <ui:composition template="/templates/layout.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui">
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:p="http://primefaces.org/ui">
 
-    <!-- Include Dialogs -->
-    <ui:define name="dialogs">
-        <ui:include src="/templates/dialogs.xhtml" />
-    </ui:define>
+  <!-- Include Dialogs -->
+  <ui:define name="dialogs">
+    <ui:include src="/templates/dialogs.xhtml" />
+  </ui:define>
 
-    <!-- Display in Content -->
-    <ui:define name="content">
+  <!-- Display in Content -->
+  <ui:define name="content">
 
-        <h:form id="frmUserList">
+    <h:form id="frmUserList">
 
-            <!-- Context Menu for Users Table -->
+      <!-- Context Menu for Users Table -->
 
-            <p:contextMenu for="usersTable">
-                <p:menuitem value="Delete" update="usersTable" actionListener="#{userMB.deleteUser}" />
-            </p:contextMenu>
+      <p:contextMenu for="usersTable">
+        <p:menuitem value="Delete" update="usersTable"
+          actionListener="#{userMB.deleteUser}" />
+      </p:contextMenu>
 
-            <!-- Users Table -->
+      <!-- Users Table -->
 
-            <p:dataTable id="usersTable" var="user" value="#{userMB.userList}" rowKey="#{user.id}" selectionMode="single" selection="#{userMB.selectedUser}" paginator="true" rows="15" paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}" rowsPerPageTemplate="5,10,15" lazy="true" >
-            
-                <p:ajax event="rowSelect" listener="#{userMB.onRowSelect}" />
+      <p:dataTable id="usersTable" var="user" value="#{userMB.userList}"
+        rowKey="#{user.id}" selectionMode="single"
+        selection="#{userMB.selectedUser}" paginator="true" rows="15"
+        paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+        rowsPerPageTemplate="5,10,15"
+        filteredValue="#{userMB.filteredUsers}">
 
-                <!-- User ID -->
-                <p:column headerText="Id">
-                    <h:outputText value="#{user.id}" />
-                </p:column>
+        <p:ajax event="rowSelect" listener="#{userMB.onRowSelect}" />
 
-                <!-- First Name -->
-                <p:column headerText="First Name">
-                    <h:outputText value="#{user.firstName}" />
-                </p:column>
+        <!-- User ID -->
+        <p:column headerText="Id" filterBy="#{user.id}">
+          <h:outputText value="#{user.id}" />
+        </p:column>
 
-                <!-- Last Name -->
-                <p:column headerText="Last Name">
-                    <h:outputText value="#{user.lastName}" />
-                </p:column>
+        <!-- First Name -->
+        <p:column headerText="First Name" filterBy="#{user.firstName}">
+          <h:outputText value="#{user.firstName}" />
+        </p:column>
 
-                <f:facet name="footer">
-                    <p:outputPanel style="display: block; text-align: left;">
-                        <p:commandButton value="Create" icon="ui-icon-star" oncomplete="dlgNewUser.show();" />
-                        <p:commandButton value="View" icon="ui-icon-search" oncomplete="dlgUserDetail.show();" update=":frmUserDetail:pgUserDetail" />
-                        <p:commandButton value="Edit" icon="ui-icon-pencil" oncomplete="dlgEditUser.show();" update=":frmEditUser:pgEditUser" />
-                        <p:commandButton value="Delete" icon="ui-icon-trash" actionListener="#{userMB.deleteUser}" update="usersTable" />
-                    </p:outputPanel>
-                </f:facet>
+        <!-- Last Name -->
+        <p:column headerText="Last Name" filterBy="#{user.lastName}">
+          <h:outputText value="#{user.lastName}" />
+        </p:column>
 
-            </p:dataTable>
-        </h:form>
+        <f:facet name="footer">
+          <p:outputPanel style="display: block; text-align: left;">
+            <p:commandButton value="Create" icon="ui-icon-star"
+              oncomplete="dlgNewUser.show();" />
+            <p:commandButton value="View" icon="ui-icon-search"
+              oncomplete="dlgUserDetail.show();"
+              update=":frmUserDetail:pgUserDetail" />
+            <p:commandButton value="Edit" icon="ui-icon-pencil"
+              oncomplete="dlgEditUser.show();"
+              update=":frmEditUser:pgEditUser" />
+            <p:commandButton value="Delete" icon="ui-icon-trash"
+              actionListener="#{userMB.deleteUser}" update="usersTable" />
+          </p:outputPanel>
+        </f:facet>
+
+      </p:dataTable>
+    </h:form>
 
 
 
-    </ui:define>
+  </ui:define>
 </ui:composition>

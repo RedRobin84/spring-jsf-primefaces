@@ -20,10 +20,8 @@
                 
             </h:panelGrid>
             
-            <p:separator />
-            
-            <p:commandButton id="addUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgNewUser','frmNewUser');" actionListener="#{userMB.addUser}" update=":frmUserList:usersTable" />
-            <p:commandButton id="cancelBtn" value="Cancel" oncomplete="dlgNewUser.hide();" />
+            <p:commandButton id="addUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgNewUser','frmNewUser');" actionListener="#{userMB.addUser}" update=":frmUserList:usersTable" style="margin-left: 5px;" />
+            <p:commandButton id="cancelBtn" value="Cancel" oncomplete="dlgNewUser.hide();" style="margin-left: 5px;" />
             
         </p:dialog>
     </h:form>
@@ -42,13 +40,9 @@
                 <h:outputText value="Last Name: " />
                 <h:outputText value="#{userMB.selectedUser.lastName}" />
             
-                <f:facet name="footer">
-                    
-                    <p:commandButton value="OK" oncomplete="dlgUserDetail.hide();" />
-                
-                </f:facet>
-                
             </p:panelGrid>
+            
+            <p:commandButton value="OK" oncomplete="dlgUserDetail.hide();" style="margin-top: 5px;" />
             
         </p:dialog>
     </h:form>
@@ -66,10 +60,8 @@
                 
             </h:panelGrid>
             
-            <p:separator />
-            
-            <p:commandButton id="editUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgEditUser','frmEditUser');" actionListener="#{userMB.updateUser}" update=":frmUserList:usersTable" />
-            <p:commandButton id="cancelBtn" value="Cancel" oncomplete="dlgEditUser.hide();" />
+            <p:commandButton id="editUserBtn" value="Submit" oncomplete="handleSubmitRequest(xhr, status, args, 'dlgEditUser','frmEditUser');" actionListener="#{userMB.updateUser}" update=":frmUserList:usersTable" style="margin-left: 5px;" />
+            <p:commandButton id="cancelBtn" value="Cancel" oncomplete="dlgEditUser.hide();" style="margin-left: 5px;" />
             
         </p:dialog>
     </h:form>
