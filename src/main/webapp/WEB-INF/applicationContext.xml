@@ -26,8 +26,8 @@
     <bean id="DataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.jdbc.Driver" />
         <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/createch" />
-        <property name="user" value="tomas" />
-        <property name="password" value="xS5JXDhn" />
+        <property name="user" value="root" />
+        <property name="password" value="root" />
         <property name="maxPoolSize" value="10" />
         <property name="maxStatements" value="5" />
         <property name="minPoolSize" value="5" />
